@@ -65,6 +65,21 @@ function sortColleagues(
   const fullResult =  sorted.map((ce) => ({ name: ce.name, email: ce.contact.email }));
   return fullResult.slice(0,end)
 }
+
+function addInterest(friend: Friend, interest: string): string[] {
+  if (friend.interests === undefined) {
+    friend.interests = [];
+  }
+  friend.interests.push(interest);
+  return friend.interests;
+}
+
+console.log(addInterest(friends[0], 'Politics'));
+console.log(addInterest(friends[1], 'Cooking'));
+console.log(addInterest(friends[1], 'Music'));
+console.log(friends.map(f => ({ name: f.name, interests: f.interests?.filter(i => i.startsWith('S'))})));
+
+
 // Test invocations
 console.log(sortColleagues(colleagues.current, (a, b) => (a.contact.extension - b.contact.extension),3));
 console.log(sortColleagues(colleagues.current, (a, b) => (a.name.length - b.name.length),1));
